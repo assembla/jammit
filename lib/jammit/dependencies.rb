@@ -13,6 +13,9 @@ begin
   require 'jammit/uglifier'
 rescue LoadError
   Jammit.javascript_compressors.delete :uglifier
+rescue ExecJS::RuntimeUnavailable => e
+  Jammit.warn(e)
+  Jammit.javascript_compressors.delete :uglifier
 end
 
 # Try YUI
